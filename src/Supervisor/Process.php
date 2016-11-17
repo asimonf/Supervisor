@@ -210,4 +210,28 @@ class Process
     {
         return $this->rpcClient->call('supervisor.clearProcessLogs', array($this->processGroup.':'.$this->processName));
     }
+	
+	/**
+     * Send signal to a process
+     *
+	 * @param integer|string $signal name (e.g. HUP) or id (e.g. 1) of signal to send
+	 *
+     * @return array result []
+     */
+	public function signalProcess($signal)
+	{
+		return $this->rpcClient->call('supervisor.signalProcess', array($this->processGroup.':'.$this->processName, $signal));
+	}
+	
+	/**
+     * Send signal to a process group
+     *
+	 * @param integer|string $signal name (e.g. HUP) or id (e.g. 1) of signal to send
+	 *
+     * @return array result []
+     */
+	public function signalProcessGroup($signal)
+	{
+		return $this->rpcClient->call('supervisor.signalProcessGroup', array($this->processGroup, $signal));
+	}
 }

@@ -250,4 +250,16 @@ class Supervisor
     {
         return $this->rpcClient->call('supervisor.clearAllProcessLogs');
     }
+	
+	/**
+     * Send signal to a process
+     *
+	 * @param integer|string $signal name (e.g. HUP) or id (e.g. 1) of signal to send
+	 *
+     * @return array result []
+     */
+	public function signalAllProcess($signal)
+	{
+		return $this->rpcClient->call('supervisor.signalAllProcesses', array($signal));
+	}
 }
